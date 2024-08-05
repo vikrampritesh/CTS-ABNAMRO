@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "4dfdd7f2-fbf8-4fa9-aeb0-7673a86fd146",
+		"name": "Customer Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "256998"
+	},
+	"item": [
+		{
+			"name": "Create Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Kishore\",\r\n    \"lastName\": \"Diyyana\",\r\n    \"email\": \"kishorebabu.d@cognizant.com\",\r\n    \"phoneNumber\" : \"7660954321\",\r\n    \"accounts\": [\r\n        {\r\n            \"principalAmount\": 1000,\r\n            \"interestRate\": 10,\r\n            \"dateOfOpening\": \"2019-01-05\",\r\n            \"maturityDate\": \"2022-08-30\",\r\n            \"accountType\": \"FIXED\"\r\n        }\r\n    ],\r\n    \"addresses\": [\r\n        {\r\n            \"streetAddress1\": \"124 No Rd\",\r\n            \"state\": \"AP\",\r\n            \"city\": \"RJY\",\r\n            \"zip\": \"1234\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer-service/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer-service",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer-service/customers/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer-service",
+						"customers",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Maturity Customers of Current Month",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer-service/customers/maturity?priorMonth=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer-service",
+						"customers",
+						"maturity"
+					],
+					"query": [
+						{
+							"key": "priorMonth",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Maturity Customers  of Next One Month",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer-service/customers/maturity?priorMonth=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer-service",
+						"customers",
+						"maturity"
+					],
+					"query": [
+						{
+							"key": "priorMonth",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Maturity Customers  of Next 3 Months",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer-service/customers/maturity?priorMonth=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer-service",
+						"customers",
+						"maturity"
+					],
+					"query": [
+						{
+							"key": "priorMonth",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
