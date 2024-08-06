@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Remainder {
 
-        Long id;
+        String id;
 
         @Size(max=50, message="'remainderText' not allowed more than 50 characters")
         String remainderText;

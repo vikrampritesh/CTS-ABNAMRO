@@ -103,15 +103,6 @@ public abstract class AccountDto {
       */
      Long years;
 
-     /*AccountDto(final Long accountNumber, final Double principalAmount,
-             Double interestRate, final LocalDate dateOfOpening) {
-          this.accountNumber = accountNumber;
-          this.principalAmount = principalAmount;
-          this.interestRate = interestRate;
-          this.dateOfOpening = dateOfOpening;
-          this.balance = this.principalAmount;
-     }*/
-
      @JsonIgnore
      public Long getMonthsCountAsOfNow() {
           if (!StringUtils.isBlank(dateOfOpening)) {
@@ -135,22 +126,22 @@ public abstract class AccountDto {
      @JsonIgnore
      final Double calcIntrestByMonth() {
           months = getMonthsCountAsOfNow();
-          interestAmount = (principalAmount*months*(interestRate/12))/100;
-          interestAmount = new BigDecimal(interestAmount).setScale(2, RoundingMode.HALF_UP).doubleValue();
-          balance = interestAmount+principalAmount;
-          System.out.println("Balance:::: "+balance);
+          if (principalAmount != null && months != null && interestRate != null) {
+               interestAmount = (principalAmount * months * (interestRate / 12)) / 100;
+               interestAmount = new BigDecimal(interestAmount).setScale(2, RoundingMode.HALF_UP).doubleValue();
+               balance = interestAmount + principalAmount;
+          }
           return  interestAmount;
      }
 
      @JsonIgnore
      final Double calcIntrestByYear() {
           years = getYearsCountAsofNow();
-          interestAmount = (principalAmount*years*interestRate)/100;
-          interestAmount = new BigDecimal(interestAmount).setScale(2, RoundingMode.HALF_UP).doubleValue();
-          balance = interestAmount+principalAmount;
-          System.out.println("Years:::: "+years);
-          System.out.println("InterestAmount:::: "+interestAmount);
-          System.out.println("Balance:::: "+balance);
+          if (principalAmount != null && years != null && interestRate != null) {
+               interestAmount = (principalAmount * years * interestRate) / 100;
+               interestAmount = new BigDecimal(interestAmount).setScale(2, RoundingMode.HALF_UP).doubleValue();
+               balance = interestAmount + principalAmount;
+          }
           return interestAmount;
      }
 

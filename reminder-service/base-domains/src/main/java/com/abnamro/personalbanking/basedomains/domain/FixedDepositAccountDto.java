@@ -78,14 +78,10 @@ public class FixedDepositAccountDto extends AccountDto {
        if (maturityDate != null) {
            DateTimeFormatter parser = DateTimeFormatter.ofPattern("yyyy-MM-dd");
            LocalDate today = LocalDate.parse(LocalDate.now().toString(), parser);
-           System.out.println("getMonthsCountAsOfNow------->"+super.getMonthsCountAsOfNow());
-           System.out.println("getMonthsCountOpeningToMaturity------->"+this.getMonthsCountOpeningToMaturity());
            if (super.getMonthsCountAsOfNow() == (this.getMonthsCountOpeningToMaturity()-priorMonth)) {
-
                long monthsOfMaturing = ChronoUnit.MONTHS.between(
                        YearMonth.from(today),
                        YearMonth.from(LocalDate.parse(maturityDate, parser)));
-               System.out.println(maturityDate + "=================>" + monthsOfMaturing);
                return monthsOfMaturing == priorMonth;
            }
        }
@@ -105,38 +101,12 @@ public class FixedDepositAccountDto extends AccountDto {
     @JsonIgnore
     final Double calcMaturity() {
         years = getYearsCountFromStartToEnd();
-        interestAmount = (principalAmount*years*interestRate)/100;
-        interestAmount = new BigDecimal(interestAmount).setScale(2, RoundingMode.HALF_UP).doubleValue();
-        balance = interestAmount+principalAmount;
-        System.out.println("Years:::: "+years);
-        System.out.println("InterestAmount:::: "+interestAmount);
-        System.out.println("Balance:::: "+balance);
+        if (principalAmount != null && years != null && interestRate != null) {
+            interestAmount = (principalAmount * years * interestRate) / 100;
+            interestAmount = new BigDecimal(interestAmount).setScale(2, RoundingMode.HALF_UP).doubleValue();
+            balance = interestAmount + principalAmount;
+        }
         return interestAmount;
     }
-
-   /* public boolean isMaturingDeposit() {
-        LocalDate today = LocalDate.now();
-        Period matAge = Period.between(maturityDate, today);
-        int matYears = matAge.getYears();
-        int matMonths = matAge.getMonths();
-        System.out.println("number of years: " + matYears);
-        System.out.println("number of months: " + matMonths);
-        long monthsOfMaturing = ChronoUnit.MONTHS.between(YearMonth.from(maturityDate),YearMonth.from(today));
-        System.out.println("Months between maturityDate and now :"+monthsOfMaturing);
-        return monthsOfMaturing == 0;
-    } */
-
-    /*public boolean isMaturingDepositPriorDaysOf(Integer beforeDays) {
-        LocalDate today = LocalDate.now();
-        LocalDate periodFromToday = today.plusDays(beforeDays);
-        Period matAge = Period.between(maturityDate, periodFromToday);
-        int matYears = matAge.getYears();
-        int matMonths = matAge.getMonths();
-        System.out.println("number of years: " + matYears);
-        System.out.println("number of months: " + matMonths);
-        long monthsOfMaturing = ChronoUnit.MONTHS.between(YearMonth.from(maturityDate),YearMonth.from(periodFromToday));
-        System.out.println("Months between maturityDate and now :"+monthsOfMaturing);
-        return monthsOfMaturing == 0;
-    }*/
 
 }

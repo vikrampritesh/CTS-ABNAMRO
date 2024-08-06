@@ -14,7 +14,7 @@
 	<name>email-service</name>
 	<description>Personalbanking Interest Remainder Service</description>
 	<properties>
-		<java.version>18</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

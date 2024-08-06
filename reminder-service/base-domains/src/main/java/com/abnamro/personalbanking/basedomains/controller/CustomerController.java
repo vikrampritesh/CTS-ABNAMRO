@@ -31,11 +31,6 @@ public class CustomerController {
     @Autowired
     private AccountsService accountsService;
 
-    @GetMapping("/status")
-    public String getStatus() {
-        return "Up :: "+new Date();
-    }
-
     /**
      * This method is used to create Customer records in DB.
      * @param request of type CustomerRequest

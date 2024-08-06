@@ -41,15 +41,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/interest-remainder-service/status",
+					"raw": "http://localhost:8083/actuator/health",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8083",
 					"path": [
-						"interest-remainder-service",
-						"status"
+						"actuator",
+						"health"
 					]
 				}
 			},
