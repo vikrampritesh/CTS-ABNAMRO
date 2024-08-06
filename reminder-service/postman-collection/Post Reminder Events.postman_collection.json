@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"typeOfAccount\":\"FIXED\"\r\n}",
+					"raw": "{\r\n   \"accountType\":\"FIXED\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,12 +21,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/interest-remainder-service/remind",
+					"raw": "http://localhost:8083/interest-remainder-service/remind",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8083",
 					"path": [
 						"interest-remainder-service",
 						"remind"

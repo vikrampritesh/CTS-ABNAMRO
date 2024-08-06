@@ -1,6 +1,6 @@
 package com.abnamro.personalbanking.emailservice.kafka;
 
-import com.abnamro.personalbanking.basedomains.domain.MaturityEvent;
+import com.abnamro.personalbanking.emailservice.domains.MaturityEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;

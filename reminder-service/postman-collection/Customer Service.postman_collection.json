@@ -39,7 +39,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Kishore\",\r\n    \"lastName\": \"Diyyana\",\r\n    \"email\": \"kishorebabu.d@cognizant.com\",\r\n    \"phoneNumber\" : \"7660954321\",\r\n    \"accounts\": [\r\n        {\r\n            \"principalAmount\": 1000,\r\n            \"interestRate\": 10,\r\n            \"dateOfOpening\": \"2019-01-05\",\r\n            \"maturityDate\": \"2022-08-30\",\r\n            \"accountType\": \"FIXED\"\r\n        }\r\n    ],\r\n    \"addresses\": [\r\n        {\r\n            \"streetAddress1\": \"124 No Rd\",\r\n            \"state\": \"AP\",\r\n            \"city\": \"RJY\",\r\n            \"zip\": \"1234\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"firstName\": \"Kishore\",\r\n    \"lastName\": \"Diyyana\",\r\n    \"email\": \"kishorebabu.d@cognizant.com\",\r\n    \"phoneNumber\" : \"7660954321\",\r\n    \"accounts\": [\r\n        {\r\n            \"principalAmount\": 1000,\r\n            \"interestRate\": 10,\r\n            \"dateOfOpening\": \"2019-08-05\",\r\n            \"maturityDate\": \"2024-08-30\",\r\n            \"accountType\": \"FIXED\"\r\n        }\r\n    ],\r\n    \"addresses\": [\r\n        {\r\n            \"streetAddress1\": \"124 No Rd\",\r\n            \"state\": \"AP\",\r\n            \"city\": \"RJY\",\r\n            \"zip\": \"1234\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -47,12 +47,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/customer-service/customer",
+					"raw": "http://localhost:8081/customer-service/customer",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"customer-service",
 						"customer"
@@ -85,12 +85,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/customer-service/customers/all",
+					"raw": "http://localhost:8081/customer-service/customers/all",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"customer-service",
 						"customers",
@@ -118,12 +118,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/customer-service/customers/maturity?priorMonth=0",
+					"raw": "http://localhost:8081/customer-service/customers/maturity?priorMonth=0",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"customer-service",
 						"customers",
@@ -157,12 +157,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/customer-service/customers/maturity?priorMonth=1",
+					"raw": "http://localhost:8081/customer-service/customers/maturity?priorMonth=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"customer-service",
 						"customers",
@@ -196,12 +196,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/customer-service/customers/maturity?priorMonth=0",
+					"raw": "http://localhost:8081/customer-service/customers/maturity?priorMonth=3",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8081",
 					"path": [
 						"customer-service",
 						"customers",
@@ -210,7 +210,7 @@
 					"query": [
 						{
 							"key": "priorMonth",
-							"value": "0"
+							"value": "3"
 						}
 					]
 				}

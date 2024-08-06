@@ -1,6 +1,6 @@
 package com.abnamro.personalbanking.interestremainder.utils;
 
-import com.abnamro.personalbanking.basedomains.domain.CustomerRequest;
+import com.abnamro.personalbanking.interestremainder.domains.CustomerRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;

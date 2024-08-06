@@ -12,7 +12,7 @@
 	<artifactId>email-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>email-service</name>
-	<description>Personalbanking Interest Remainder Service</description>
+	<description>Personalbanking Email Remainder Service</description>
 	<properties>
 		<java.version>18</java.version>
 	</properties>
@@ -41,11 +41,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.abnamro.personalbanking</groupId>
-			<artifactId>base-domains</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -53,14 +51,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

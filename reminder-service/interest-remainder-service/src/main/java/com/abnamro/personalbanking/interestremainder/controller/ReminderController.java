@@ -1,7 +1,7 @@
 package com.abnamro.personalbanking.interestremainder.controller;
 
-import com.abnamro.personalbanking.basedomains.domain.*;
-import com.abnamro.personalbanking.basedomains.enums.AccountType;
+import com.abnamro.personalbanking.interestremainder.domains.*;
+import com.abnamro.personalbanking.interestremainder.enums.AccountType;
 import com.abnamro.personalbanking.interestremainder.enums.ReminderStatus;
 import com.abnamro.personalbanking.interestremainder.exception.BusinessException;
 import com.abnamro.personalbanking.interestremainder.kafka.MaturityProducer;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
 
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.UUID;
 
 @RestController
@@ -32,7 +31,7 @@ public class ReminderController {
         this.maturityProducer = maturityProducer;
     }
 
-    @Value("${base-domains.customer-service-url}")
+    @Value("${customer-service-url}")
     private String customerServiceUrl;
 
     /**
@@ -43,23 +42,9 @@ public class ReminderController {
      * @throws BusinessException
      */
     @PostMapping("/remind")
-    public Response placeReminder(@RequestBody @Valid Remainder remainder) throws BusinessException {
+    public Response placeReminder(@RequestBody @Valid Remainder remainder) throws Exception {
         LOGGER.debug("Started Placing Fixed Deposit Reminder.");
-        try {
-            processReminder(remainder);
-        }
-        catch (BusinessException bixEx) {
-            LOGGER.error("BusinessException Occurred: "+bixEx.getMessage());
-            return Response.builder().statusName(bixEx.getStatus().name()).
-                    statusCode(bixEx.getStatus().value()).
-                    message(bixEx.getMessage()).build();
-        }
-        catch (Exception ex) {
-                LOGGER.error("Unexpected error occurred: ",ex);
-                return Response.builder().statusName(HttpStatus.INTERNAL_SERVER_ERROR.name()).
-                        statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value()).
-                        message(CommonConstants.MATURITY_EVENT_FAIL_MSG+ex.getMessage()).build();
-        }
+        processReminder(remainder);
         return Response.builder().statusName(HttpStatus.OK.name()).
                 statusCode(HttpStatus.OK.value()).
                 message(CommonConstants.MATURITY_EVENT_SUCCESS_MSG).build();
@@ -78,7 +63,7 @@ public class ReminderController {
                     status(HttpStatus.BAD_REQUEST).build();
         }
         try {
-            if (AccountType.FIXED.name().equalsIgnoreCase(remainder.getTypeOfAccount())) {
+            if (AccountType.FIXED.name().equalsIgnoreCase(remainder.getAccountType())) {
                 remainder.setStatus(ReminderStatus.STARTED.name());
                 LOGGER.debug("Calling Customer Service.");
                 RestClient restClient = RestClient.create();

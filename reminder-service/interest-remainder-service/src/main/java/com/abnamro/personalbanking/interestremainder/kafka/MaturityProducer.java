@@ -1,6 +1,6 @@
 package com.abnamro.personalbanking.interestremainder.kafka;
 
-import com.abnamro.personalbanking.basedomains.domain.MaturityEvent;
+import com.abnamro.personalbanking.interestremainder.domains.MaturityEvent;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
