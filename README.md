@@ -29,15 +29,15 @@ The Bank now needs to remind him that his account is maturing with the maturity 
 
 ## Run Steps To Test Local
 
-1) Run Kafka (the folder where installed)
+1) Run Kafka (the folder where installed) <br>
   $ bin/zookeeper-server-start.sh config/zookeeper.properties
-2) Run Zookeeper (the folder where Kafka installed)
+2) Run Zookeeper (the folder where Kafka installed)  <br>
   $ bin/kafka-server-start.sh config/server.properties
-3) To check DB stored entries (Open Browser to view)
+3) To check DB stored entries (Open Browser to view)  <br>
    http://localhost:8081/h2-console/login.jsp
-4) To check implemented api from Swagger (Open Browser to view)
+4) To check implemented api from Swagger (Open Browser to view)  <br>
    http://localhost:8081/v3/api-docs
-5) To view implemented API document specs of Swagger from UI (Open Browser to view)
+5) To view implemented API document specs of Swagger from UI (Open Browser to view)  <br>
    http://localhost:8081/swagger-ui/index.html   
 
    
