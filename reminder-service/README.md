@@ -2,11 +2,11 @@
 Solutioned Architecture as Event-Driven Microservices using SpringBoot and Apache Kafka.
 With the following microservices.
 
-1)	Customer Service </br>
+1)	<b>Customer Service </b> </br>
 To create Bank customer, accounts and bank transaction etc.
-2)	Email Service (Kafka Consumer) </br>
+2)	<b>Email Service (Kafka Consumer)</b> </br>
 To receive email-reminder-event and send to intended customer which already subscribed to respective Event-Publisher.
-3)	Interest Reminder Service (Kafka Producer) </br>
+3)	<b>Interest Reminder Service (Kafka Producer) </b> </br>
 Find maturity deposits ahead of one months from the bank accounts and post the email-reminder event to the respective Event-Subscriber. 
 
 ## Implemented Technologies
