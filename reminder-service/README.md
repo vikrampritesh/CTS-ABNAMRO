@@ -13,7 +13,7 @@ Find maturity deposits ahead of one months from the bank accounts and post the e
 1. Java-18
 2. Spring Boot 3.2.8
 3. Spring Rest (Cloud Native Microservices)
-4. Kafka
+4. Kafka 3.6.2
 5. H2 Database
 6. JPA
 7. Spring Actuator
