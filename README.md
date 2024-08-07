@@ -15,30 +15,5 @@ The Bank now needs to remind him that his account is maturing with the maturity 
 3. Code should be Junit tested and if possible create Integration Test.
 4. Please note that this solution should be cloud deployment ready with proper swagger contract and good to have POSTMAN collections to test the APIs.
 
-
-## Implemented Technologies
-1. Java-18
-2. Spring Boot 3.2.8
-3. Spring Rest (Cloud Native Microservices)
-4. Kafka
-5. H2 Database
-6. JPA
-7. Spring Actuator
-8. Lombok
-9. Openapi/Swagger
-
-## Run Steps To Test Local
-
-1) Run Kafka (the folder where installed) <br>
-  $ bin/zookeeper-server-start.sh config/zookeeper.properties
-2) Run Zookeeper (the folder where Kafka installed)  <br>
-  $ bin/kafka-server-start.sh config/server.properties
-3) To check DB stored entries (Open Browser to view)  <br>
-   http://localhost:8081/h2-console/login.jsp
-4) To check implemented api from Swagger (Open Browser to view)  <br>
-   http://localhost:8081/v3/api-docs
-5) To view implemented API document specs of Swagger from UI (Open Browser to view)  <br>
-   http://localhost:8081/swagger-ui/index.html   
-
    
    

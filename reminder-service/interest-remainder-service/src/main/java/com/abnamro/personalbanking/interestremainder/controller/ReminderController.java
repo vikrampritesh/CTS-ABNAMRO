@@ -45,6 +45,7 @@ public class ReminderController {
     public Response placeReminder(@RequestBody @Valid Remainder remainder) throws Exception {
         LOGGER.debug("Started Placing Fixed Deposit Reminder.");
         processReminder(remainder);
+        LOGGER.info(CommonConstants.MATURITY_EVENT_SUCCESS_MSG);
         return Response.builder().statusName(HttpStatus.OK.name()).
                 statusCode(HttpStatus.OK.value()).
                 message(CommonConstants.MATURITY_EVENT_SUCCESS_MSG).build();
