@@ -1,6 +1,5 @@
 ## Solution Design and Development
-Solutioned Architecture as Event-Driven Microservices using SpringBoot and Apache Kafka.
-With the following microservices.
+Solutioned Architecture as Event-Driven Microservices using SpringBoot and Apache Kafka with the following microservices.
 
 1)	<b>Customer Service </b> </br>
 To create Bank customer, accounts and bank transaction etc.
@@ -19,6 +18,7 @@ Find maturity deposits ahead of one months from the bank accounts and post the e
 7. Spring Actuator
 8. Lombok
 9. Openapi/Swagger
+10. Spring Junit/Integration Testing(Mockito/Jupitor)
 
 ## Run Steps To Test Local
 

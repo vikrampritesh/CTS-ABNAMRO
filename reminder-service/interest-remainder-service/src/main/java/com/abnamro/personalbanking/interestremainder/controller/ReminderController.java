@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestClient;
 
 import javax.validation.Valid;
 import java.util.UUID;
@@ -67,11 +66,7 @@ public class ReminderController {
             if (AccountType.FIXED.name().equalsIgnoreCase(remainder.getAccountType())) {
                 remainder.setStatus(ReminderStatus.STARTED.name());
                 LOGGER.debug("Calling Customer Service.");
-                RestClient restClient = RestClient.create();
-                Response response = restClient.get()
-                        .uri(customerServiceUrl)
-                        .retrieve()
-                        .body(Response.class);
+                Response response = CommonUtils.invokeRestAPI(customerServiceUrl);
                 if (response != null) {
                     if (HttpStatus.OK.value() != response.getStatusCode()) {
                         throw BusinessException.builder().
