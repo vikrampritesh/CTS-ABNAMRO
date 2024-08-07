@@ -45,11 +45,11 @@ public class AccountsServiceImpl implements AccountsService {
     }
 
     public List<CustomerRequest> getMaturityCustomers(Integer priorMonth) {
-        List<CustomerRequest> customers = this.findAll();
+        List<CustomerRequest> customers = this.getAll();
         List<CustomerRequest> maturityCustomers = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(customers)) {
+        if (customers != null && !CollectionUtils.isEmpty(customers)) {
             for (CustomerRequest customer : customers) {
-                if (!CollectionUtils.isEmpty(customer.getAccounts())) {
+                if (customer != null && !CollectionUtils.isEmpty(customer.getAccounts())) {
                     for (AccountDto accountDto : customer.getAccounts()) {
                         if (accountDto instanceof FixedDepositAccountDto) {
                             if (((FixedDepositAccountDto) accountDto).isMaturingDepositWithInMonth(priorMonth)) {
@@ -68,7 +68,7 @@ public class AccountsServiceImpl implements AccountsService {
      * This method is used to get all Customers details from DB.
      * @return List of type CustomerRequest
      */
-    public List<CustomerRequest> findAll() {
+    public List<CustomerRequest> getAll() {
         LOGGER.debug("Request received in service to get all Customers");
         List<CustomerRequest> customers = new ArrayList<>();
         List<Customer> models = customerRepository.findAll();
@@ -79,19 +79,6 @@ public class AccountsServiceImpl implements AccountsService {
         }
         return customers;
     }
-
-    /*private List<CustomerRequest> mockDBCustomers() {
-        List<CustomerRequest> customers = new ArrayList<>();
-        customers.add(CustomerRequest.builder().id(12345L).email("kishorebabu.d@cognizant.com").
-                lastName("Diyyana").firstName("Kishore").phoneNumber("91-7660954321").
-                addresses(List.of(AddressDto.builder().streetAddress1("3-22, Hukkumpet").city("Rajahmundry").state("AP").build())).
-                accounts(List.of(FixedDepositAccountDto.builder().accountNumber(123445L).
-                            principalAmount(1000.0).
-                            interestRate(10.0).dateOfOpening(LocalDate.of(2019, Month.AUGUST, 15).toString()).
-                            maturityDate(LocalDate.of(2024, Month.AUGUST, 15).toString()).
-                            build())).build());
-        return customers;
-    }*/
 
     private void validate(CustomerRequest request) throws BusinessException {
         List<String> errors = new ArrayList<>();
@@ -171,28 +158,31 @@ public class AccountsServiceImpl implements AccountsService {
         }
     }
 
-    private CustomerRequest buildtoDto(Customer model){
-        CustomerRequest request = new CustomerRequest();
-        BeanUtils.copyProperties(model, request);
-        if (!CollectionUtils.isEmpty(model.getAccounts())) {
-            List<AccountDto> accountDtos = new ArrayList<>();
-            for (Account account : model.getAccounts()) {
-                if ("FIXED".equalsIgnoreCase(account.getAccountType())) {
-                    AccountDto accountDto = new FixedDepositAccountDto();
-                    BeanUtils.copyProperties(account, accountDto);
-                    accountDtos.add(accountDto);
+    private CustomerRequest buildtoDto(Customer model) {
+        CustomerRequest request = null;
+        if (model != null) {
+            request = new CustomerRequest();
+            BeanUtils.copyProperties(model, request);
+            if (!CollectionUtils.isEmpty(model.getAccounts())) {
+                List<AccountDto> accountDtos = new ArrayList<>();
+                for (Account account : model.getAccounts()) {
+                    if ("FIXED".equalsIgnoreCase(account.getAccountType())) {
+                        AccountDto accountDto = new FixedDepositAccountDto();
+                        BeanUtils.copyProperties(account, accountDto);
+                        accountDtos.add(accountDto);
+                    }
                 }
+                request.setAccounts(accountDtos);
             }
-            request.setAccounts(accountDtos);
-        }
-        if (!CollectionUtils.isEmpty(model.getAddresses())) {
-            List<AddressDto> addressDtos = new ArrayList<>();
-            for (Address address : model.getAddresses()) {
-                AddressDto addressDto = new AddressDto();
-                BeanUtils.copyProperties(addressDto, address);
-                addressDtos.add(addressDto);
+            if (!CollectionUtils.isEmpty(model.getAddresses())) {
+                List<AddressDto> addressDtos = new ArrayList<>();
+                for (Address address : model.getAddresses()) {
+                    AddressDto addressDto = new AddressDto();
+                    BeanUtils.copyProperties(addressDto, address);
+                    addressDtos.add(addressDto);
+                }
+                request.setAddresses(addressDtos);
             }
-            request.setAddresses(addressDtos);
         }
         return request;
     }

@@ -14,6 +14,6 @@ public interface AccountsService {
      * This method is used to get all Customers details from DB.
      * @return List of type CustomerRequest
      */
-    public List<CustomerRequest> findAll();
+    public List<CustomerRequest> getAll();
 
 }

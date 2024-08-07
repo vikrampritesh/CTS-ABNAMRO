@@ -53,7 +53,7 @@ public class CustomerController {
         LocalDateTime before = LocalDateTime.now();
         List<CustomerRequest> customers = null;
         try {
-            customers = accountsService.findAll();
+            customers = accountsService.getAll();
         }catch (Exception exception) {
             LOGGER.error("Unexpected error occurred: ", exception);
         } finally {
