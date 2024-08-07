@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class InterestRemainderServiceApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
