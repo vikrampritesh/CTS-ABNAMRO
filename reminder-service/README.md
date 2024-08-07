@@ -23,15 +23,42 @@ Find maturity deposits ahead of one months from the bank accounts and post the e
 ## Run Steps To Test Local
 
 1) Run Kafka (the folder where installed) <br>
+```
   $ bin/zookeeper-server-start.sh config/zookeeper.properties
+```
 2) Run Zookeeper (the folder where Kafka installed)  <br>
+```
   $ bin/kafka-server-start.sh config/server.properties
-3) To check DB stored entries (Open Browser to view)  <br>
+```
+3) Run customer-service to create customer account with fixed deposit details
+   Go to Project Home directory then
+   ```
+   ..\reminder-service\customer-service>  $ mvn spring-boot:run
+   ```
+3) Run interest-remainder-service to post email-events for mature fixed deposits after one month 
+   Go to Project Home directory then
+   ```
+   ..\reminder-service\interest-remainder-service>  $ mvn spring-boot:run
+   ```
+5) Run email-service to conssume email-events for mature fixed deposits after one month 
+ Go to Project Home directory then
+```
+ ..reminder-service\email-service>  $ mvn spring-boot:run
+```
+6) Go to Postman collection and run endpoints <br>
+
+7) To check DB stored entries (Open Browser to view)  <br>
+```
    http://localhost:8081/h2-console/login.jsp
-4) To check implemented api from Swagger (Open Browser to view)  <br>
+```
+8) To check implemented api from Swagger (Open Browser to view)  <br>
+```
    http://localhost:8081/v3/api-docs
-5) To view implemented API document specs of Swagger from UI (Open Browser to view)  <br>
-   http://localhost:8081/swagger-ui/index.html   
+```
+9) To view implemented API document specs of Swagger from UI (Open Browser to view)  <br>
+```
+   http://localhost:8081/swagger-ui/index.html
+```
 
    
    
