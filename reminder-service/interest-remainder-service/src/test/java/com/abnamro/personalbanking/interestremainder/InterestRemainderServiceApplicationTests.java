@@ -1,6 +1,5 @@
-package com.abnamro.personalbanking.interest_remainder_service;
+package com.abnamro.personalbanking.interestremainder;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest

@@ -1,4 +1,4 @@
-package com.abnamro.personalbanking.base_domains;
+package com.abnamro.personalbanking.customer;
 
 import com.abnamro.personalbanking.customer.domain.AccountDto;
 import com.abnamro.personalbanking.customer.domain.AddressDto;
@@ -28,11 +28,10 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class CustomerServiceGetMaturityCustomersTests {
+public class CustomerServiceGetAllTests {
 
     @Mock
     private AccountsServiceImpl accountsService;
@@ -41,7 +40,7 @@ public class CustomerServiceGetMaturityCustomersTests {
     private CustomerRepository customerRepository;
 
     @Test
-    void testGetCurrentMonthMaturityDoneCustomers() {
+    void testGetAllCustomers() {
         List<CustomerRequest> customers = new ArrayList<>();
         List<Customer> customerModels = new ArrayList<>();
 
@@ -60,41 +59,14 @@ public class CustomerServiceGetMaturityCustomersTests {
             customerModels.add(model);
         }
         when(customerRepository.findAll()).thenReturn(customerModels);
-        when(accountsService.getMaturityCustomers(0)).thenReturn(customers);
-        List<CustomerRequest> response = accountsService.getMaturityCustomers(0);
+        when(accountsService.getAll()).thenReturn(customers);
+        List<CustomerRequest> response = accountsService.getAll();
         Assertions.assertNotNull(response);
         assertEquals(customers, response);
     }
 
     @Test
-    void testGetCurrentMonthMaturityDoneCustomersNegative1DiffYear() {
-        List<CustomerRequest> customers = new ArrayList<>();
-        List<Customer> customerModels = new ArrayList<>();
-
-        customers.add(CustomerRequest.builder().id(12345L).email("kishorebabu.d@cognizant.com").
-                lastName("Diyyana").firstName("Kishore").phoneNumber("91-7660954321").
-                addresses(List.of(AddressDto.builder().streetAddress1("3-22, Hukkumpet").city("Rajahmundry").state("AP").build())).
-                accounts(List.of(FixedDepositAccountDto.builder().accountNumber("123445L").
-                        principalAmount(1000.0).
-                        accountType(AccountType.FIXED.name()).
-                        interestRate(10.0).dateOfOpening(LocalDate.of(2018, Month.AUGUST, 15).toString()).
-                        maturityDate(LocalDate.of(2024, Month.AUGUST, 15).toString()).
-                        build())).build());
-        for (CustomerRequest customerRequest:customers) {
-            Customer model = new Customer();
-            buildtoModel(model, customerRequest);
-            customerModels.add(model);
-        }
-       // when(customerRepository.findAll()).thenReturn(customerModels);
-        when(accountsService.getAll()).thenReturn(customers);
-        when(accountsService.getMaturityCustomers(0)).thenReturn(customers);
-        List<CustomerRequest> response = accountsService.getMaturityCustomers(2);
-        Assertions.assertNotNull(response);
-        assertNotEquals(customers, response);
-    }
-
-    @Test
-    void testGetCurrentMonthMaturityDoneCustomersWhenNoData() {
+    void testGetAllCustomersWhenNoData() {
         List<CustomerRequest> customers = new ArrayList<>();
         List<Customer> customerModels = new ArrayList<>();
 
@@ -105,8 +77,8 @@ public class CustomerServiceGetMaturityCustomersTests {
             customerModels.add(model);
         }
         when(customerRepository.findAll()).thenReturn(customerModels);
-        when(accountsService.getMaturityCustomers(0)).thenReturn(customers);
-        List<CustomerRequest> response = accountsService.getMaturityCustomers(0);
+        when(accountsService.getAll()).thenReturn(customers);
+        List<CustomerRequest> response = accountsService.getAll();
         Assertions.assertNotNull(response);
         Assertions.assertEquals((response.isEmpty()), customers.isEmpty());
     }
@@ -129,7 +101,7 @@ public class CustomerServiceGetMaturityCustomersTests {
                 model.setAccounts(accountModels);
             }
             if (!CollectionUtils.isEmpty(request.getAddresses())) {
-                List<Address> addressModels = new ArrayList<>();
+                List<com.abnamro.personalbanking.customer.model.Address> addressModels = new ArrayList<>();
                 for (AddressDto addressDto : request.getAddresses()) {
                     Address addressModel = new Address();
                     BeanUtils.copyProperties(addressDto, addressModel);

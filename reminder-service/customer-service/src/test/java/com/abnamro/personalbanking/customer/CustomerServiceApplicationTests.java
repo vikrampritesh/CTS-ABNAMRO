@@ -1,4 +1,4 @@
-package com.abnamro.personalbanking.base_domains;
+package com.abnamro.personalbanking.customer;
 
 import com.abnamro.personalbanking.customer.domain.FixedDepositAccountDto;
 import org.junit.jupiter.api.Test;
