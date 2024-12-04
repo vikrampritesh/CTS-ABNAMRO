@@ -14,3 +14,6 @@ The Bank now needs to remind him that his account is maturing with the maturity 
 2. The code should follow SOLID priciples.
 3. Code should be Junit tested and if possible create Integration Test.
 4. Please note that this solution should be cloud deployment ready with proper swagger contract and good to have POSTMAN collections to test the APIs.
+
+   
+   
